@@ -41,10 +41,14 @@ export default function CheckoutForm({ onTransactionEvaluated }) {
 
   // Telemetry Tracker instance
   const trackerRef = useRef(null);
+  const personaRef = useRef(selectedPersona);
+  const personaCStartTime = useRef(null);
+
   const [liveTelemetry, setLiveTelemetry] = useState({
-    deviceId: 'generating...',
-    dwellSeconds: 0,
-    mouseJitter: 0.65,
+    deviceId: 'dev_alex_macbook',
+    dwellDisplay: '14s',
+    dwellSeconds: 14,
+    mouseJitter: 0.72,
     pasteDetected: false
   });
 
@@ -54,19 +58,40 @@ export default function CheckoutForm({ onTransactionEvaluated }) {
     tracker.start();
     trackerRef.current = tracker;
 
-    const deviceFp = generateDeviceFingerprint();
-    setLiveTelemetry(prev => ({ ...prev, deviceId: deviceFp.deviceId }));
-
     // Timer interval to show live dwell & mouse jitter
     const interval = setInterval(() => {
+      if (personaRef.current === 'persona_c') {
+        const elapsed = personaCStartTime.current ? (Date.now() - personaCStartTime.current) : 0;
+        const currentBotMs = 420 + elapsed;
+        setLiveTelemetry({
+          deviceId: 'dev_bot_headless_99',
+          dwellDisplay: `${currentBotMs}ms`,
+          dwellSeconds: Math.floor(currentBotMs / 1000),
+          mouseJitter: 0.00,
+          pasteDetected: true
+        });
+        return;
+      }
+
+      if (personaRef.current === 'persona_a') {
+        return;
+      }
+
+      if (personaRef.current === 'persona_b') {
+        return;
+      }
+
+      // For custom mode, capture real client tracker
       const snap = tracker.getSnapshot();
-      setLiveTelemetry(prev => ({
-        ...prev,
+      const deviceFp = generateDeviceFingerprint();
+      setLiveTelemetry({
+        deviceId: customConfig.is_new_device ? `dev_custom_${Date.now().toString().slice(-4)}` : deviceFp.deviceId,
+        dwellDisplay: `${Math.floor(snap.form_dwell_ms / 1000)}s`,
         dwellSeconds: Math.floor(snap.form_dwell_ms / 1000),
         mouseJitter: snap.mouse_jitter,
         pasteDetected: snap.paste_detected
-      }));
-    }, 500);
+      });
+    }, 400);
 
     return () => {
       tracker.stop();
@@ -77,6 +102,7 @@ export default function CheckoutForm({ onTransactionEvaluated }) {
   // Update form inputs when persona changes
   const handleSelectPersona = (personaId) => {
     setSelectedPersona(personaId);
+    personaRef.current = personaId;
 
     if (personaId === 'persona_a') {
       setCardName('Alex Chen');
@@ -84,18 +110,55 @@ export default function CheckoutForm({ onTransactionEvaluated }) {
       setRawCardNumber('4242424242424242');
       setExpiry('08/29');
       setCvv('888');
+      personaCStartTime.current = null;
+      setLiveTelemetry({
+        deviceId: 'dev_alex_macbook',
+        dwellDisplay: '14s',
+        dwellSeconds: 14,
+        mouseJitter: 0.72,
+        pasteDetected: false
+      });
     } else if (personaId === 'persona_b') {
       setCardName('Alex Chen');
       setCardNumber('4242 •••• •••• 4242');
       setRawCardNumber('4242424242424242');
       setExpiry('08/29');
       setCvv('888');
+      personaCStartTime.current = null;
+      setLiveTelemetry({
+        deviceId: 'dev_unrecognized_chrome_win',
+        dwellDisplay: '5.8s',
+        dwellSeconds: 6,
+        mouseJitter: 0.45,
+        pasteDetected: false
+      });
     } else if (personaId === 'persona_c') {
       setCardName('Sarah Jenkins');
       setCardNumber('4000 •••• •••• 9010');
       setRawCardNumber('4000123456789010');
       setExpiry('03/27');
       setCvv('123');
+      personaCStartTime.current = Date.now();
+      setLiveTelemetry({
+        deviceId: 'dev_bot_headless_99',
+        dwellDisplay: '420ms',
+        dwellSeconds: 0,
+        mouseJitter: 0.00,
+        pasteDetected: true
+      });
+    } else {
+      personaCStartTime.current = null;
+      if (trackerRef.current) {
+        const snap = trackerRef.current.getSnapshot();
+        const deviceFp = generateDeviceFingerprint();
+        setLiveTelemetry({
+          deviceId: customConfig.is_new_device ? `dev_custom_${Date.now().toString().slice(-4)}` : deviceFp.deviceId,
+          dwellDisplay: `${Math.floor(snap.form_dwell_ms / 1000)}s`,
+          dwellSeconds: Math.floor(snap.form_dwell_ms / 1000),
+          mouseJitter: snap.mouse_jitter,
+          pasteDetected: snap.paste_detected
+        });
+      }
     }
   };
 
@@ -383,14 +446,14 @@ export default function CheckoutForm({ onTransactionEvaluated }) {
                   </div>
                   <div>
                     <span className="text-slate-500 block text-[10px]">DWELL TIME</span>
-                    <span className="block font-semibold">
-                      {liveTelemetry.dwellSeconds}s
+                    <span className={`block font-semibold ${liveTelemetry.dwellDisplay?.includes('ms') ? 'text-rose-400 font-bold' : 'text-slate-200'}`}>
+                      {liveTelemetry.dwellDisplay || `${liveTelemetry.dwellSeconds}s`}
                     </span>
                   </div>
                   <div>
                     <span className="text-slate-500 block text-[10px]">MOUSE JITTER</span>
-                    <span className={`block font-semibold ${liveTelemetry.mouseJitter <= 0.05 ? 'text-rose-400' : 'text-emerald-400'}`}>
-                      {liveTelemetry.mouseJitter}
+                    <span className={`block font-semibold ${Number(liveTelemetry.mouseJitter) <= 0.05 ? 'text-rose-400 font-bold' : 'text-emerald-400'}`}>
+                      {typeof liveTelemetry.mouseJitter === 'number' ? liveTelemetry.mouseJitter.toFixed(2) : (liveTelemetry.mouseJitter || '0.00')}
                     </span>
                   </div>
                   <div>
@@ -425,6 +488,7 @@ export default function CheckoutForm({ onTransactionEvaluated }) {
             amount={currentAmount}
             currency="USD"
             merchantCategory={currentCategory}
+            selectedPersona={selectedPersona}
           />
         </div>
 
