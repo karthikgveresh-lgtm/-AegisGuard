@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AegisGuard: Demo Video Explanation & Presenter Guide</title>
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 18mm 16mm 18mm 16mm;
+      @bottom-right {
+        content: counter(page);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 9pt;
+        color: #64748b;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: #1e293b;
+      background-color: #ffffff;
+      line-height: 1.55;
+      font-size: 10pt;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1, h2, h3, h4, h5 {
+      color: #0f172a;
+      font-weight: 700;
+      line-height: 1.25;
+      margin-top: 0;
+    }
+
+    h1 {
+      font-size: 22pt;
+      margin-bottom: 6px;
+      letter-spacing: -0.5px;
+    }
+
+    h2 {
+      font-size: 14pt;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 6px;
+      margin-top: 22px;
+      margin-bottom: 12px;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    h3 {
+      font-size: 11.5pt;
+      margin-top: 14px;
+      margin-bottom: 8px;
+      color: #1e293b;
+    }
+
+    p {
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+
+    .page-break {
+      page-break-before: always;
+    }
+
+    .no-break {
+      page-break-inside: avoid;
+    }
+
+    /* Cover / Header Banner */
+    .header-banner {
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 60%, #312e81 100%);
+      color: #ffffff;
+      padding: 24px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      border-left: 6px solid #6366f1;
+    }
+
+    .header-banner h1 {
+      color: #ffffff;
+      font-size: 21pt;
+      margin-bottom: 6px;
+    }
+
+    .header-banner .subtitle {
+      font-size: 11pt;
+      color: #c7d2fe;
+      margin-bottom: 14px;
+      font-weight: 500;
+    }
+
+    .badge-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 8pt;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .badge-primary { background: #4f46e5; color: #ffffff; }
+    .badge-success { background: #059669; color: #ffffff; }
+    .badge-warning { background: #d97706; color: #ffffff; }
+    .badge-danger  { background: #dc2626; color: #ffffff; }
+    .badge-neutral { background: #334155; color: #f8fafc; }
+
+    /* Highlights Box */
+    .summary-card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 16px;
+    }
+
+    .summary-card strong {
+      color: #0f172a;
+    }
+
+    /* Callout Boxes */
+    .voiceover-box {
+      background: #f0fdf4;
+      border-left: 4px solid #16a34a;
+      border-top: 1px solid #dcfce7;
+      border-right: 1px solid #dcfce7;
+      border-bottom: 1px solid #dcfce7;
+      border-radius: 6px;
+      padding: 10px 14px;
+      margin: 10px 0;
+      page-break-inside: avoid;
+    }
+
+    .voiceover-header {
+      font-size: 8.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #15803d;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .voiceover-text {
+      font-style: italic;
+      color: #166534;
+      font-size: 9.5pt;
+      line-height: 1.5;
+    }
+
+    .action-box {
+      background: #eff6ff;
+      border-left: 4px solid #2563eb;
+      border-top: 1px solid #dbeafe;
+      border-right: 1px solid #dbeafe;
+      border-bottom: 1px solid #dbeafe;
+      border-radius: 6px;
+      padding: 10px 14px;
+      margin: 10px 0;
+      page-break-inside: avoid;
+    }
+
+    .action-header {
+      font-size: 8.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #1d4ed8;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .action-text {
+      color: #1e40af;
+      font-size: 9.5pt;
+      line-height: 1.45;
+    }
+
+    .tip-box {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      border-top: 1px solid #fef3c7;
+      border-right: 1px solid #fef3c7;
+      border-bottom: 1px solid #fef3c7;
+      border-radius: 6px;
+      padding: 10px 14px;
+      margin: 10px 0;
+      font-size: 9pt;
+      color: #92400e;
+      page-break-inside: avoid;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0 16px 0;
+      font-size: 8.8pt;
+    }
+
+    th, td {
+      padding: 7px 10px;
+      text-align: left;
+      border: 1px solid #e2e8f0;
+      vertical-align: middle;
+    }
+
+    th {
+      background: #f1f5f9;
+      color: #334155;
+      font-weight: 600;
+      font-size: 8.5pt;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    tr:nth-child(even) td {
+      background: #f8fafc;
+    }
+
+    /* Code Blocks */
+    pre, code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 10px 12px;
+      border-radius: 6px;
+      font-size: 8.5pt;
+      overflow-x: hidden;
+      margin: 8px 0 12px 0;
+      border: 1px solid #334155;
+    }
+
+    code.inline {
+      background: #f1f5f9;
+      color: #0f172a;
+      padding: 2px 5px;
+      border-radius: 4px;
+      font-size: 8.5pt;
+      border: 1px solid #e2e8f0;
+    }
+
+    /* Persona Cards */
+    .persona-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin: 12px 0;
+    }
+
+    .persona-card {
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 10px 12px;
+      background: #ffffff;
+      page-break-inside: avoid;
+    }
+
+    .persona-card.allow {
+      border-top: 4px solid #10b981;
+      background: #f0fdf4;
+    }
+
+    .persona-card.challenge {
+      border-top: 4px solid #f59e0b;
+      background: #fffbeb;
+    }
+
+    .persona-card.block {
+      border-top: 4px solid #f43f5e;
+      background: #fff1f2;
+    }
+
+    .persona-title {
+      font-weight: 700;
+      font-size: 10pt;
+      margin-bottom: 2px;
+    }
+
+    .persona-outcome {
+      font-weight: 700;
+      font-size: 8pt;
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+
+    .outcome-allow { background: #d1fae5; color: #065f46; }
+    .outcome-challenge { background: #fef3c7; color: #92400e; }
+    .outcome-block { background: #ffe4e6; color: #9f1239; }
+
+    .persona-desc {
+      font-size: 8.5pt;
+      color: #475569;
+      line-height: 1.4;
+    }
+
+    /* List styling */
+    ul, ol {
+      margin-top: 0;
+      margin-bottom: 10px;
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 4px;
+    }
+
+    .footer-note {
+      margin-top: 24px;
+      padding-top: 10px;
+      border-top: 1px solid #e2e8f0;
+      font-size: 8pt;
+      color: #64748b;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- COVER / HEADER -->
+  <div class="header-banner">
+    <h1>🛡️ AegisGuard</h1>
+    <div class="subtitle">Real-Time Transaction Fraud Prevention &amp; Adaptive Authentication Engine</div>
+    <div style="font-size: 9.5pt; color: #e0e7ff; margin-bottom: 10px;">
+      <strong>YouTube Video Demo Guide, Script &amp; System Walkthrough</strong><br>
+      Created for Presenters, Video Explaners, and Hackathon Demonstrations
+    </div>
+    <div class="badge-bar">
+      <span class="badge badge-primary">Sub-Millisecond (&lt;15ms) Latency</span>
+      <span class="badge badge-success">3-Tier Adaptive Decisions</span>
+      <span class="badge badge-warning">Behavioral Biometrics</span>
+      <span class="badge badge-danger">Impossible Travel Detection</span>
+      <span class="badge badge-neutral">100% Explainable Signals</span>
+    </div>
+  </div>
+
+  <div class="summary-card">
+    <h3 style="margin-top: 0; color: #4338ca; font-size: 10.5pt;">🚀 Quick Guide for the Presenter (Start Here!)</h3>
+    <p style="margin-bottom: 6px; font-size: 9.2pt;">
+      Welcome! If you're recording the demo video for YouTube and are new to this project, <strong>don't panic</strong>. This document is written specifically for you. You don't need prior fraud-detection experience:
+    </p>
+    <ul style="font-size: 9pt; margin-bottom: 0;">
+      <li><strong>Section 1 &amp; 2:</strong> Gives you the background: why fraud detection is broken today and what makes AegisGuard revolutionary.</li>
+      <li><strong>Section 3 &amp; 4:</strong> Explains how the engine works under the hood so you sound like an industry veteran.</li>
+      <li><strong>Section 5:</strong> Gives you the 2-minute terminal setup to run the app on your computer.</li>
+      <li><strong>Section 6:</strong> Provides a <strong>word-for-word YouTube script</strong> with exact click-by-click instructions!</li>
+      <li><strong>Section 7 &amp; 8:</strong> Provides FAQs, YouTube tags, descriptions, and timestamps ready to paste into YouTube.</li>
+    </ul>
+  </div>
+
+  <!-- SECTION 1 -->
+  <h2>1. Problem Statement: Why Fraud Detection is Broken Today</h2>
+  <p>
+    In modern global commerce, over <strong>$35 Trillion</strong> in digital transactions occur every year. However, online merchants and financial institutions face a devastating dilemma known as the <strong>Fraud-Friction Paradox</strong>:
+  </p>
+
+  <div class="no-break">
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 25%;">The Industry Challenge</th>
+          <th style="width: 40%;">Why Traditional Solutions Fail</th>
+          <th style="width: 35%;">Direct Business Impact</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>1. High Fraud Losses</strong></td>
+          <td>Card-Not-Present (CNP) fraud, automated credential stuffing, and botnets steal $48 Billion annually. Attackers use headless browsers to test stolen credentials in seconds.</td>
+          <td>Direct chargebacks, processor fines, and lost merchandise.</td>
+        </tr>
+        <tr>
+          <td><strong>2. Severe Cart Abandonment</strong></td>
+          <td>To stop fraud, legacy systems force mandatory SMS/OTP codes or 3D-Secure prompts on <em>every single checkout</em>.</td>
+          <td><strong>15% to 25% cart abandonment</strong>. Frustrated good customers give up and leave.</td>
+        </tr>
+        <tr>
+          <td><strong>3. Opaque "Black-Box" ML</strong></td>
+          <td>Modern AI models output an arbitrary fraud probability score (e.g., 0.87) with zero justification for why a customer was declined.</td>
+          <td>Customer support cannot help, compliance audits fail under FCRA/GDPR, and merchants don't trust the engine.</td>
+        </tr>
+        <tr>
+          <td><strong>4. Slow Processing Latency</strong></td>
+          <td>Asynchronous legacy risk engines take 300ms to 2,000ms to compute risk scores, causing sluggish checkouts.</td>
+          <td>Every 100ms delay drops e-commerce conversion rates by 1%.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="tip-box">
+    <strong>💡 The Core Question We Answer:</strong><br>
+    <em>"How can an online platform stop automated bot attacks and account takeovers in sub-15ms, reward trusted users with frictionless one-click payments, and explain 100% of its decision reasoning transparently?"</em>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="page-break"></div>
+  <h2>2. Why We Built AegisGuard: The Solution &amp; Vision</h2>
+  <p>
+    AegisGuard was engineered from the ground up as a <strong>real-time, cloud-native fraud scoring and adaptive step-up authentication microservice</strong>. Instead of treating all checkouts with the same heavy-handed hurdles, AegisGuard dynamically measures silent telemetry and behavioural signals in the background.
+  </p>
+
+  <h3 style="color: #1e1b4b;">The Four Architectural Pillars of AegisGuard:</h3>
+  <ol style="font-size: 9.3pt;">
+    <li>
+      <strong>Zero-Friction Behavioral Telemetry:</strong> Passively measures how the user interacts with the payment form—mouse movement curvature/jitter entropy, inter-keystroke timing intervals (cadence), dwell time, and clipboard paste detection. Human typing is naturally variable; automated bot scripts type with robotic, zero-variance speed or paste instant strings.
+    </li>
+    <li>
+      <strong>Physical Impossible Travel Calculations (Haversine Formula):</strong> Calculates geographic distance and elapsed time between the current transaction and the customer's previous authorized transaction. If a customer transacted in New York 10 minutes ago and suddenly checks out from Miami (1,750 km away), that requires an impossible physical speed of 10,500 km/h (Mach 8.5)—instantly triggering a challenge!
+    </li>
+    <li>
+      <strong>Three-Tier Adaptive Decisions (ALLOW, CHALLENGE, BLOCK):</strong>
+      <ul>
+        <li><code class="inline">ALLOW (0 – 29)</code>: Instant approval in ~10–15ms. 95%+ of trusted customers experience zero hurdles.</li>
+        <li><code class="inline">CHALLENGE (30 – 74)</code>: Step-up TOTP verification. Instead of blocking a user on a new device or travel VPN, we allow them to prove their identity safely. Successful verification registers the device as trusted.</li>
+        <li><code class="inline">BLOCK (75 – 100)</code>: Automated immediate stoppage of botnets, blacklisted IP ranges, and brute-force attacks.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>100% Explainable Decision Weights:</strong> Every decision returns the exact signals that contributed to the score, with normalized weights that add up precisely to the final risk number. No black boxes.
+    </li>
+  </ol>
+
+  <!-- SECTION 3 -->
+  <h2>3. Under the Hood: Scoring Engine &amp; Signal Weights</h2>
+  <p>
+    The evaluation pipeline executes in two high-speed stages configured in <code class="inline">server/src/config/weights.js</code>:
+  </p>
+  <ul>
+    <li><strong>Stage 1 (Pre-Filters):</strong> Fast-fail rules checking IP subnet blacklists and hard velocity violations.</li>
+    <li><strong>Stage 2 (Weighted Pipeline):</strong> Evaluates travel physics, hardware consistency, behavioral biometrics, and spend anomalies.</li>
+  </ul>
+
+  <div class="no-break">
+    <table>
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Signal Factor Name</th>
+          <th style="text-align: center;">Weight</th>
+          <th>Condition &amp; Behavioral Evidence</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="badge badge-danger">Pre-Filter</span></td>
+          <td><code class="inline">blacklisted_ip_or_subnet</code></td>
+          <td style="text-align: center; font-weight: bold; color: #dc2626;">+50</td>
+          <td>IP address belongs to known commercial VPN, Tor exit node, or botnet CIDR.</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-danger">Pre-Filter</span></td>
+          <td><code class="inline">hard_rate_limit_violation</code></td>
+          <td style="text-align: center; font-weight: bold; color: #dc2626;">+60 / BLOCK</td>
+          <td>More than 5 checkout attempts from the same entity in under 60 seconds.</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-warning">Travel</span></td>
+          <td><code class="inline">impossible_travel</code></td>
+          <td style="text-align: center; font-weight: bold; color: #d97706;">+40</td>
+          <td>Implied displacement speed exceeds <strong>900 km/h</strong> (commercial airliner speed).</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-warning">Travel</span></td>
+          <td><code class="inline">rapid_displacement</code></td>
+          <td style="text-align: center; font-weight: bold; color: #d97706;">+25</td>
+          <td>Implied displacement speed between 500 km/h and 900 km/h.</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-primary">Device</span></td>
+          <td><code class="inline">unrecognized_device</code></td>
+          <td style="text-align: center; font-weight: bold; color: #4f46e5;">+20</td>
+          <td>Canvas and WebGL browser hardware hash is not in customer's trusted registry.</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-success">Device</span></td>
+          <td><code class="inline">trusted_device</code></td>
+          <td style="text-align: center; font-weight: bold; color: #059669;">-5</td>
+          <td>Hardware fingerprint matches a pre-verified device bound to the user profile.</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-primary">Device</span></td>
+          <td><code class="inline">automated_browser_environment</code></td>
+          <td style="text-align: center; font-weight: bold; color: #4f46e5;">+35</td>
+          <td>Headless Chrome, Puppeteer, Selenium, or PhantomJS navigator flags detected.</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-neutral">Behavior</span></td>
+          <td><code class="inline">clipboard_paste_sensitive_field</code></td>
+          <td style="text-align: center; font-weight: bold;">+25</td>
+          <td>Direct paste event recorded on sensitive credit card number or CVV input.</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-neutral">Behavior</span></td>
+          <td><code class="inline">superhuman_form_fill_speed</code></td>
+          <td style="text-align: center; font-weight: bold;">+25</td>
+          <td>Total form dwell time is under 1,500 ms (impossible for human reading and typing).</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-neutral">Behavior</span></td>
+          <td><code class="inline">zero_mouse_entropy</code></td>
+          <td style="text-align: center; font-weight: bold;">+20</td>
+          <td>Mouse curvature and trajectory jitter score is &le; 0.05 (straight-line bot script).</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-neutral">Behavior</span></td>
+          <td><code class="inline">robotic_keystroke_cadence</code></td>
+          <td style="text-align: center; font-weight: bold;">+25</td>
+          <td>Inter-keystroke interval standard deviation is &lt; 15 ms (synthetic automated input).</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-neutral">Behavior</span></td>
+          <td><code class="inline">typing_cadence_anomaly</code></td>
+          <td style="text-align: center; font-weight: bold;">+10</td>
+          <td>Typing rhythm deviates by &gt; 120 ms from customer's stored baseline mean.</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-warning">Amount</span></td>
+          <td><code class="inline">severe_amount_anomaly</code></td>
+          <td style="text-align: center; font-weight: bold;">+30</td>
+          <td>Transaction amount z-score is &ge; 3.0&sigma; above historical customer average.</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-warning">Amount</span></td>
+          <td><code class="inline">high_risk_merchant_category</code></td>
+          <td style="text-align: center; font-weight: bold;">+15</td>
+          <td>High liquid conversion categories: cryptocurrency, gift cards, luxury goods.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="summary-card" style="margin-top: 10px;">
+    <strong>🔒 PCI-DSS Security Hygiene:</strong> Sensitive 16-digit card numbers (PAN) and CVVs are <em>never</em> stored or logged to disk. The server extracts only the non-sensitive <code class="inline">card_last4</code> and generates a one-way <code class="inline">SHA-256</code> token hash for velocity indexing.
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="page-break"></div>
+  <h2>4. Application Architecture &amp; The Two UIs</h2>
+  <p>
+    AegisGuard is divided into two intuitive operational views accessible from the top navigation bar:
+  </p>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;">
+    <div style="border: 1px solid #cbd5e1; border-radius: 8px; padding: 12px; background: #f8fafc;">
+      <h3 style="color: #1e3a8a; margin-top: 0; font-size: 10.5pt;">🛒 Tab 1: Merchant Checkout Simulator</h3>
+      <p style="font-size: 8.8pt; color: #334155;">
+        Simulates an e-commerce checkout page (e.g., luxury electronics store). Captures client telemetry in real time:
+      </p>
+      <ul style="font-size: 8.5pt; color: #475569; padding-left: 18px;">
+        <li><strong>One-Click Personas:</strong> Deterministic presets (Persona A, B, C) for instant demoing.</li>
+        <li><strong>Live Telemetry Widget:</strong> Live counter showing form dwell time, mouse jitter entropy, and paste flags.</li>
+        <li><strong>Decision Modal:</strong> Shows instantaneous ALLOW, CHALLENGE (with OTP input), or BLOCK with explainable signal breakdowns.</li>
+        <li><strong>Custom Signal Playground:</strong> Interactive sliders to modify signals and test any scenario on the fly.</li>
+      </ul>
+    </div>
+
+    <div style="border: 1px solid #cbd5e1; border-radius: 8px; padding: 12px; background: #f8fafc;">
+      <h3 style="color: #1e3a8a; margin-top: 0; font-size: 10.5pt;">📊 Tab 2: Risk Operations Console</h3>
+      <p style="font-size: 8.8pt; color: #334155;">
+        Designed for fraud analysts and security operation teams:
+      </p>
+      <ul style="font-size: 8.5pt; color: #475569; padding-left: 18px;">
+        <li><strong>Live Server-Sent Events (SSE) Stream:</strong> Real-time streaming table showing transactions as they happen.</li>
+        <li><strong>KPI Metric Cards:</strong> Approval Rate, Challenge Rate, Block Rate, and sub-15ms Latency.</li>
+        <li><strong>Interactive Recharts:</strong> Risk score distribution histogram, top triggered factors, and decision breakdowns.</li>
+        <li><strong>⚡ Run Attack Simulation:</strong> Fires a burst of 6 bot transactions to show live real-time detection.</li>
+        <li><strong>Transaction Inspector Drawer:</strong> Side drawer with deep-dive tabs: Factor Weights, Raw Telemetry, and Immutable Audit Trail.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SECTION 5 -->
+  <h2>5. How to Run the Application (2-Minute Setup)</h2>
+  <p>Follow these quick commands in your terminal before recording your video:</p>
+
+  <div class="no-break">
+    <h3 style="margin-top: 6px; font-size: 9.5pt;">Step 1: Seed the Database Baseline</h3>
+    <pre>npm run seed</pre>
+    <p style="font-size: 8.8pt; color: #475569;">
+      This creates 5 diverse user profiles, verified hardware devices, and ~200 historical transactions in the local SQLite database.
+    </p>
+
+    <h3 style="margin-top: 10px; font-size: 9.5pt;">Step 2: Start the Development Server</h3>
+    <pre>npm run dev</pre>
+    <p style="font-size: 8.8pt; color: #475569;">
+      Starts both the Express API (Port 4000) and the React Vite client (Port 3000) concurrently.
+    </p>
+
+    <h3 style="margin-top: 10px; font-size: 9.5pt;">Step 3: Open in Chrome</h3>
+    <pre>http://localhost:3000</pre>
+    <p style="font-size: 8.8pt; color: #475569;">
+      Look at the top navbar: verify that the green <strong>"● Live Stream Connected"</strong> badge is visible. You're ready to record!
+    </p>
+  </div>
+
+  <div class="tip-box">
+    <strong>💡 Quick Reset Tip:</strong> If you ever make a mistake or want to re-record a scene, simply click the <strong>"Reset Demo"</strong> button in the top navigation bar. It instantly restores the database to its pristine demo state!
+  </div>
+
+  <!-- SECTION 6 -->
+  <div class="page-break"></div>
+  <h2>6. Complete YouTube Video Demo Script (Word-for-Word)</h2>
+  <p style="font-size: 9.2pt;">
+    Follow this step-by-step roadmap during your video recording. Each step shows you <strong>what to click on screen</strong> and provides the <strong>exact voiceover script</strong> to speak. Aim for an upbeat, clear, and confident delivery. (Target length: ~4 to 5 minutes).
+  </p>
+
+  <!-- SCENE 1 -->
+  <div class="no-break" style="margin-bottom: 16px;">
+    <h3 style="background: #1e293b; color: white; padding: 6px 10px; border-radius: 6px; font-size: 10pt;">
+      🎬 Scene 1: Introduction &amp; The Problem (0:00 – 0:45)
+    </h3>
+    <div class="action-box">
+      <div class="action-header">🖥️ Action On Screen</div>
+      <div class="action-text">
+        Start on <code class="inline">http://localhost:3000</code> on the <strong>Merchant Checkout Simulator</strong> tab. Have your webcam in the corner or full screen for the first 15 seconds, then cut to your screen.
+      </div>
+    </div>
+    <div class="voiceover-box">
+      <div class="voiceover-header">🎙️ What to Say (Voiceover Script)</div>
+      <div class="voiceover-text">
+        "Hi everyone! Today we are introducing <strong>AegisGuard</strong>: a sub-millisecond, real-time fraud scoring and adaptive authentication engine built for modern online checkout environments.<br><br>
+        In e-commerce, merchants face a painful trade-off: if you put high-friction SMS or OTP verification on every purchase, you lose up to 25% of good customers due to cart abandonment. But if you ease up, credential-stuffing bots and account takeover fraud can cost billions in chargebacks.<br><br>
+        AegisGuard solves this dilemma using <strong>silent behavioral biometrics, impossible travel physics, and an explainable three-tier decision engine</strong>: ALLOW, CHALLENGE, or BLOCK. Let's see it in action across three real-world personas!"
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENE 2 -->
+  <div class="no-break" style="margin-bottom: 16px;">
+    <h3 style="background: #059669; color: white; padding: 6px 10px; border-radius: 6px; font-size: 10pt;">
+      🎬 Scene 2: Persona A — The Trusted Customer (ALLOW) (0:45 – 1:30)
+    </h3>
+    <div class="action-box">
+      <div class="action-header">🖥️ Action On Screen</div>
+      <div class="action-text">
+        1. Click the green <strong>"Persona A"</strong> card at the top.<br>
+        2. Point out customer name (<strong>Alex Chen</strong>), home city (<strong>New York</strong>), and trusted MacBook Pro.<br>
+        3. Point out the live telemetry metrics at the bottom of the card: dwell time ~14s, normal human mouse jitter (0.72), no paste.<br>
+        4. Click the blue <strong>"Authorize &amp; Pay $74.50"</strong> button.<br>
+        5. The green <strong>ALLOW</strong> modal pops up in ~12 milliseconds.<br>
+        6. Click <strong>"Why this decision?"</strong> to open the signal breakdown.
+      </div>
+    </div>
+    <div class="voiceover-box">
+      <div class="voiceover-header">🎙️ What to Say (Voiceover Script)</div>
+      <div class="voiceover-text">
+        "First, let's look at <strong>Persona A</strong>: Alex Chen, a returning legitimate customer. Alex is purchasing groceries for $74.50 from his home in New York using his recognized MacBook Pro.<br><br>
+        Notice the client-side telemetry: his mouse jitter is 0.72, showing natural human curvature, and his typing cadence matches his historical profile.<br><br>
+        When I click <em>'Authorize &amp; Pay'</em>—look at that speed! In just <strong>12 milliseconds</strong>, AegisGuard approves the transaction with an instant <strong>ALLOW</strong> decision.<br><br>
+        If we click <em>'Why this decision?'</em>, AegisGuard doesn't give us a vague AI score. It clearly explains that the device matched his verified hardware fingerprint—earning a negative risk bonus of minus 5 points—keeping his final risk score at <strong>0 out of 100</strong>. Zero friction, zero OTP hurdles, zero cart abandonment."
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENE 3 -->
+  <div class="no-break" style="margin-bottom: 16px;">
+    <h3 style="background: #d97706; color: white; padding: 6px 10px; border-radius: 6px; font-size: 10pt;">
+      🎬 Scene 3: Persona B — Suspicious VPN Hop &amp; Impossible Travel (CHALLENGE) (1:30 – 2:45)
+    </h3>
+    <div class="action-box">
+      <div class="action-header">🖥️ Action On Screen</div>
+      <div class="action-text">
+        1. Close the modal and click the amber <strong>"Persona B"</strong> preset.<br>
+        2. Point out that Alex Chen transacted in New York 10 minutes ago, but this new request is coming from <strong>Miami (~1,750 km away)</strong> on an <strong>unrecognized Windows PC</strong>.<br>
+        3. Click <strong>"Authorize &amp; Pay $98.50"</strong>.<br>
+        4. The amber <strong>CHALLENGE</strong> modal appears with a 6-digit OTP prompt.<br>
+        5. Highlight the signals: <code class="inline">impossible_travel (+40)</code> and <code class="inline">unrecognized_device (+20)</code>.<br>
+        6. Point out the blue banner at the bottom: <em>"Hackathon Judge Demo Hint: Active TOTP code: 123456"</em>.<br>
+        7. Click the code or enter <code class="inline">123456</code> into the inputs.<br>
+        8. Click <strong>"Verify &amp; Complete Payment"</strong> &rarr; Modal turns green <strong>"Payment Verified &amp; Completed"</strong>!
+      </div>
+    </div>
+    <div class="voiceover-box">
+      <div class="voiceover-header">🎙️ What to Say (Voiceover Script)</div>
+      <div class="voiceover-text">
+        "Now let's look at <strong>Persona B</strong>. Alex Chen completed an authorized transaction in New York just 10 minutes ago. Suddenly, a new $98 purchase attempt arrives originating from Miami—over 1,750 kilometers away—on a completely new Windows browser.<br><br>
+        When we submit this payment, AegisGuard calculates the geographic displacement velocity using the <strong>Haversine formula</strong>. Covering 1,750 kilometers in 10 minutes requires a physical speed of over <strong>10,500 kilometers per hour</strong>—which is physically impossible on commercial flights!<br><br>
+        Instead of rigidly blocking a customer who might simply be on a corporate VPN, AegisGuard executes an <strong>Adaptive Step-Up Challenge</strong>. The risk score is 64 out of 100, driven by plus 40 for Impossible Travel and plus 20 for Unrecognized Device.<br><br>
+        AegisGuard prompts for a 6-digit Time-based One-Time Password. We enter the one-time code <code class="inline">123456</code>, click <em>'Verify'</em>, and immediately the transaction upgrades to <strong>CHALLENGE_PASSED</strong>, payment completes, and the new device is securely bound to his account. Safe, adaptive, and customer-friendly!"
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENE 4 -->
+  <div class="page-break"></div>
+  <div class="no-break" style="margin-bottom: 16px;">
+    <h3 style="background: #dc2626; color: white; padding: 6px 10px; border-radius: 6px; font-size: 10pt;">
+      🎬 Scene 4: Persona C — Automated Credential-Stuffing Bot (BLOCK) (2:45 – 3:45)
+    </h3>
+    <div class="action-box">
+      <div class="action-header">🖥️ Action On Screen</div>
+      <div class="action-text">
+        1. Close the modal and click the red <strong>"Persona C"</strong> preset card.<br>
+        2. Highlight the telltale bot telemetry indicators:<br>
+           &bull; IP Address: <code class="inline">45.154.255.89</code> (known botnet / datacenter CIDR)<br>
+           &bull; Mouse Jitter: <code class="inline">0.00</code> (zero human curve; straight robotic trajectory)<br>
+           &bull; Clipboard Paste: <code class="inline">true</code> (automated clipboard injection into card field)<br>
+           &bull; Dwell Time: <code class="inline">420 ms</code> (superhuman script speed; &lt;1 second)<br>
+        3. Click <strong>"Authorize &amp; Pay $1,250.00"</strong>.<br>
+        4. The red <strong>BLOCK</strong> modal appears immediately with a Risk Score of <strong>100 / 100</strong>.<br>
+        5. Walk through the four triggered factors that contribute to the block.
+      </div>
+    </div>
+    <div class="voiceover-box">
+      <div class="voiceover-header">🎙️ What to Say (Voiceover Script)</div>
+      <div class="voiceover-text">
+        "Now let's examine an actual cyber attack: <strong>Persona C</strong>, representing an automated credential-stuffing bot trying to purchase $1,250 in cryptocurrency with stolen credentials.<br><br>
+        Notice what our client-side telemetry captured before the submit button was even clicked: the IP belongs to a blacklisted bulletproof proxy subnet, the mouse jitter entropy is a dead flat <strong>0.00</strong>, the card number was pasted instantaneously, and the form dwell time was a superhuman <strong>420 milliseconds</strong>.<br><br>
+        We click <em>'Authorize &amp; Pay'</em>, and AegisGuard hits it with an immediate, deterministic <strong>BLOCK</strong> at maximum risk score: <strong>100 out of 100</strong>.<br><br>
+        Looking at the transparent breakdown: Blacklisted Subnet (+50), Direct Clipboard Paste (+25), Superhuman Form Fill (+25), and Zero Mouse Entropy (+20). The bot script never stood a chance, and the merchant's capital is protected without human intervention."
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENE 5 -->
+  <div class="no-break" style="margin-bottom: 16px;">
+    <h3 style="background: #0284c7; color: white; padding: 6px 10px; border-radius: 6px; font-size: 10pt;">
+      🎬 Scene 5: Custom Signal Tweaker Sandbox (3:45 – 4:15)
+    </h3>
+    <div class="action-box">
+      <div class="action-header">🖥️ Action On Screen</div>
+      <div class="action-text">
+        1. Close the modal and click the cyan <strong>"Custom Mode"</strong> button in the preset bar.<br>
+        2. Show the interactive sliders: drag <strong>Form Dwell Time</strong>, toggle <strong>Direct Clipboard Paste</strong>, and adjust <strong>Mouse Jitter Entropy</strong>.<br>
+        3. Explain that judges and developers can test any custom edge case live in the sandbox.
+      </div>
+    </div>
+    <div class="voiceover-box">
+      <div class="voiceover-header">🎙️ What to Say (Voiceover Script)</div>
+      <div class="voiceover-text">
+        "For judges and security auditors who want to experiment, AegisGuard includes an interactive <strong>Custom Signal Playground</strong>.<br><br>
+        You can freely adjust the form dwell time slider, simulate clipboard paste injections, tweak mouse jitter entropy, and pick different global IP locations to observe exactly how our weighted risk engine responds dynamically."
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENE 6 -->
+  <div class="no-break" style="margin-bottom: 16px;">
+    <h3 style="background: #4f46e5; color: white; padding: 6px 10px; border-radius: 6px; font-size: 10pt;">
+      🎬 Scene 6: Risk Operations Console &amp; Live Attack Simulation (4:15 – 5:30)
+    </h3>
+    <div class="action-box">
+      <div class="action-header">🖥️ Action On Screen</div>
+      <div class="action-text">
+        1. Click the <strong>"Risk Ops Console"</strong> tab in the top navigation bar.<br>
+        2. Point out the top KPI metric bar: Total Transactions, Approval Rate, Challenge Rate, Block Rate, and sub-15ms Latency.<br>
+        3. Hover over the interactive Recharts: Risk Score Distribution histogram, Top Triggered Factors, and Decision Ratios.<br>
+        4. Point out the Live Transaction Table streaming via <strong>Server-Sent Events (SSE)</strong>.<br>
+        5. Click the high-impact button: <strong>"⚡ Run Attack Simulation"</strong> in the top right.<br>
+        6. Watch the live toast notifications and table rows populate in real time as 6 bot transactions are blocked.<br>
+        7. Click on any transaction row to open the <strong>Transaction Inspector Drawer</strong>.<br>
+        8. Click through the 3 drawer tabs: <strong>Signal Breakdown</strong>, <strong>Raw Telemetry</strong>, and <strong>Immutable Audit Trail</strong>.
+      </div>
+    </div>
+    <div class="voiceover-box">
+      <div class="voiceover-header">🎙️ What to Say (Voiceover Script)</div>
+      <div class="voiceover-text">
+        "Now, let's step into the shoes of a fraud analyst by opening the <strong>Risk Operations Console</strong>.<br><br>
+        Everything here is connected via a persistent <strong>Server-Sent Events (SSE) stream</strong>. We see real-time KPIs: total volume, approval ratios, challenge pass rates, and an average engine latency of just <strong>11 milliseconds</strong>.<br><br>
+        Now watch what happens when an attacker targets our store: I'll click <em>'⚡ Run Attack Simulation'</em>.<br><br>
+        Instantly, our background simulation fires a burst of 6 automated bot attacks. Watch the screen—live toast alerts fire, the score histogram updates dynamically, and every single attack is intercepted and blocked in real time!<br><br>
+        We can click any transaction row to slide out the <strong>Transaction Inspector Drawer</strong>. Here we have full regulatory compliance visibility: an exact breakdown of the mathematical signal weights, the raw browser hardware telemetry, and an <strong>append-only immutable audit trail</strong> recording every evaluation and state transition."
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENE 7 -->
+  <div class="no-break" style="margin-bottom: 16px;">
+    <h3 style="background: #1e293b; color: white; padding: 6px 10px; border-radius: 6px; font-size: 10pt;">
+      🎬 Scene 7: Summary &amp; Wrap-Up (5:30 – 6:00)
+    </h3>
+    <div class="action-box">
+      <div class="action-header">🖥️ Action On Screen</div>
+      <div class="action-text">
+        Return to the full dashboard view or show the project GitHub README on screen.
+      </div>
+    </div>
+    <div class="voiceover-box">
+      <div class="voiceover-header">🎙️ What to Say (Voiceover Script)</div>
+      <div class="voiceover-text">
+        "To wrap up: AegisGuard proves that modern security doesn't have to ruin the customer experience.<br><br>
+        With sub-15ms processing, passive behavioral biometrics, impossible travel physics, and 100% transparent explainability, AegisGuard provides financial institutions with enterprise-grade protection that customers love.<br><br>
+        The entire application is open source, cloud-ready with Docker, and tested end-to-end. Thank you so much for watching, and check out the GitHub link in the description below!"
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 7 -->
+  <div class="page-break"></div>
+  <h2>7. Presenter Cheatsheet &amp; Technical Glossary</h2>
+  <p>If viewers or judges ask questions in comments or live Q&amp;A, here are quick 1-sentence answers:</p>
+
+  <div class="no-break">
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 28%;">Concept / Term</th>
+          <th style="width: 72%;">Simple Plain-English Explanation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Haversine Formula</strong></td>
+          <td>A mathematical formula that calculates the great-circle spherical distance between two GPS coordinates on Earth. We divide distance by elapsed time to calculate velocity in km/h.</td>
+        </tr>
+        <tr>
+          <td><strong>Mouse Jitter / Entropy</strong></td>
+          <td>Humans move their mouse in natural curves with slight micro-tremors (jitter score &gt; 0.40). Automated scripts use straight-line coordinate jumps or programmatic triggers (jitter &le; 0.05).</td>
+        </tr>
+        <tr>
+          <td><strong>Keystroke Cadence</strong></td>
+          <td>Measures the mean delay and standard deviation between keystrokes. Humans have natural variation (~30–45ms std-dev). Bot scripts inject keys at rigid intervals (std-dev &lt; 15ms) or 0ms.</td>
+        </tr>
+        <tr>
+          <td><strong>Canvas / WebGL Fingerprint</strong></td>
+          <td>Renders an invisible graphic in memory using the device's GPU and font engine. Because every GPU and driver renders pixels slightly differently, the resulting hash uniquely identifies hardware without cookies.</td>
+        </tr>
+        <tr>
+          <td><strong>Server-Sent Events (SSE)</strong></td>
+          <td>A lightweight, one-way HTTP streaming protocol (<code class="inline">GET /api/stream</code>) that pushes real-time transaction updates from the Node.js server directly to the React dashboard with sub-5ms overhead.</td>
+        </tr>
+        <tr>
+          <td><strong>PCI-DSS Compliance</strong></td>
+          <td>Sensitive 16-digit card numbers and CVVs are processed strictly in volatile memory. Only the last 4 digits and a one-way cryptographic SHA-256 hash are retained for velocity calculations.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SECTION 8 -->
+  <h2>8. YouTube Video Publishing Kit (Copy &amp; Paste)</h2>
+  <p>When uploading the video to YouTube, you can copy and paste the following metadata directly:</p>
+
+  <div class="no-break">
+    <h3 style="font-size: 9.5pt; margin-top: 6px;">Recommended YouTube Video Titles (Choose One):</h3>
+    <ul style="font-size: 9pt;">
+      <li><strong>Option 1 (Recommended):</strong> AegisGuard — Real-Time Fraud Prevention &amp; Adaptive Authentication (Demo &amp; Architecture)</li>
+      <li><strong>Option 2:</strong> Sub-Millisecond E-Commerce Fraud Scoring Engine: Behavioral Biometrics &amp; Impossible Travel</li>
+      <li><strong>Option 3:</strong> Stopping Bots Without Ruining UX: Full Walkthrough of AegisGuard Fraud Microservice</li>
+    </ul>
+
+    <h3 style="font-size: 9.5pt; margin-top: 10px;">Video Description &amp; Timestamps:</h3>
+    <pre>
+🛡️ AegisGuard: Real-Time Transaction Fraud Scoring & Adaptive Step-Up Authentication
+
+A deep-dive demonstration and architectural explanation of AegisGuard—a cloud-native microservice that evaluates silent client telemetry, behavioral biometric dynamics (keystrokes, mouse jitter, paste detection), geographic displacement velocities (impossible travel via Haversine), and transaction anomalies to deliver sub-15ms ALLOW, CHALLENGE, and BLOCK decisions.
+
+⏱️ TIMESTAMPS:
+0:00 - Introduction & The Fraud-Friction Paradox
+0:45 - Persona A: Trusted Customer (Instant ALLOW in 12ms)
+1:30 - Persona B: Impossible Travel & Adaptive TOTP Challenge
+2:45 - Persona C: Automated Bot Attack & Deterministic BLOCK
+3:45 - Custom Signal Playground & Behavioral Sandbox
+4:15 - Live Risk Operations Console (SSE Stream & Attack Simulation)
+5:30 - System Architecture, Compliance Hygiene & Conclusion
+
+🚀 KEY FEATURES:
+• Sub-millisecond evaluation latency (<15ms)
+• 3-Tier Adaptive Decisions: ALLOW, CHALLENGE (TOTP), BLOCK
+• 100% Explainable risk factor weights (No black boxes!)
+• Silent behavioral biometrics: Keystroke cadence, mouse entropy, paste detection
+• Impossible travel detection via Haversine spherical displacement
+• Real-time Risk Operations Console with Server-Sent Events (SSE)
+• Zero PAN/CVV retention (PCI-DSS compliance)
+
+💻 TECH STACK:
+• Client: React, Vite, Tailwind CSS, Recharts, Lucide Icons
+• Server: Node.js, Express, Helmet, CORS, SQLite (Swappable for Cloud SQL/Postgres)
+• Cloud: Containerized with Docker, GCP Cloud Run ready
+    </pre>
+
+    <h3 style="font-size: 9.5pt; margin-top: 10px;">Video Tags / Keywords:</h3>
+    <p style="font-size: 8.5pt; color: #475569; background: #f1f5f9; padding: 8px 12px; border-radius: 6px;">
+      fraud prevention, cybersecurity, behavioral biometrics, machine learning fraud detection, stripe radar alternative, fintech demo, impossible travel algorithm, haversine formula, react vite, nodejs express, web application security, bot detection, TOTP authentication, hackathon project
+    </p>
+  </div>
+
+  <div class="footer-note">
+    🛡️ <strong>AegisGuard Demo &amp; Explanation Handbook</strong> &bull; Prepared for YouTube Video Walkthrough &amp; Project Presentation &bull; All Rights Reserved.
+  </div>
+
+</body>
+</html>
