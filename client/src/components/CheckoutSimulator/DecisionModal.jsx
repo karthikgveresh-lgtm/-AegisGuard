@@ -107,19 +107,19 @@ export default function DecisionModal({ result, onClose, onReset, onTransactionU
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md overflow-y-auto">
-      <div className="relative w-full max-w-xl my-8 glass-panel-elevated rounded-2xl border border-slate-800 p-6 sm:p-8 space-y-6 animate-fade-in shadow-2xl">
-        
-        {/* Modal Close Button */}
-        <button
-          id="btn-close-decision-modal"
-          type="button"
-          onClick={onClose}
-          className="absolute top-4 right-4 p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors z-10"
-          title="Close modal"
-        >
-          <XOctagon className="w-5 h-5 opacity-70 hover:opacity-100" />
-        </button>
+    <div className="glass-panel-elevated rounded-2xl border border-slate-800 p-6 sm:p-8 space-y-6 animate-fade-in shadow-2xl relative overflow-hidden">
+      
+      {/* Return to Form Button */}
+      <button
+        id="btn-close-decision-modal"
+        type="button"
+        onClick={onClose}
+        className="absolute top-4 right-4 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white bg-slate-800/80 hover:bg-slate-700 transition-colors z-10 flex items-center space-x-1.5 border border-slate-700/60"
+        title="Return to checkout form"
+      >
+        <ArrowRight className="w-3.5 h-3.5 rotate-180" />
+        <span>Back to Form</span>
+      </button>
 
         {/* 1. ALLOW Screen */}
         {challengeState === 'ALLOW' && (
@@ -331,6 +331,5 @@ export default function DecisionModal({ result, onClose, onReset, onTransactionU
         )}
 
       </div>
-    </div>
   );
 }

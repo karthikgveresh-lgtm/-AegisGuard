@@ -52,7 +52,7 @@ export default function SignalBreakdown({ evaluation, defaultExpanded = true }) 
           )}
 
           {/* List of signals sorted descending */}
-          <div className="space-y-2">
+          <div className="space-y-2 max-h-80 overflow-y-auto pr-1">
             {signals.length === 0 ? (
               <p className="text-slate-400 italic py-2 text-center">
                 No adverse signals triggered. Standard risk profile.

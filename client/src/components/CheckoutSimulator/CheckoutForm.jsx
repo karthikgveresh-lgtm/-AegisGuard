@@ -101,6 +101,7 @@ export default function CheckoutForm({ onTransactionEvaluated }) {
 
   // Update form inputs when persona changes
   const handleSelectPersona = (personaId) => {
+    setResult(null);
     setSelectedPersona(personaId);
     personaRef.current = personaId;
 
@@ -324,9 +325,17 @@ export default function CheckoutForm({ onTransactionEvaluated }) {
       {/* Main Grid: Checkout Form + Cart Summary */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         
-        {/* Left: Payment Form (7 Cols) */}
+        {/* Left: Payment Form or Decision Result (7 Cols) */}
         <div className="lg:col-span-7 space-y-4">
-          <div className="glass-panel rounded-2xl p-6 border border-slate-800 text-slate-200">
+          {result ? (
+            <DecisionModal
+              result={result}
+              onClose={() => setResult(null)}
+              onReset={handleReset}
+              onTransactionUpdated={onTransactionEvaluated}
+            />
+          ) : (
+            <div className="glass-panel rounded-2xl p-6 border border-slate-800 text-slate-200">
             <div className="flex items-center justify-between pb-4 border-b border-slate-800">
               <div className="flex items-center space-x-2.5">
                 <div className="p-2 rounded-lg bg-cyan-950/60 border border-cyan-800/40 text-cyan-400">
@@ -480,6 +489,7 @@ export default function CheckoutForm({ onTransactionEvaluated }) {
               </button>
             </form>
           </div>
+          )}
         </div>
 
         {/* Right: Cart Summary (5 Cols) */}
@@ -493,15 +503,6 @@ export default function CheckoutForm({ onTransactionEvaluated }) {
         </div>
 
       </div>
-
-      {/* Decision Result Modal */}
-      {result && (
-        <DecisionModal
-          result={result}
-          onClose={() => setResult(null)}
-          onReset={handleReset}
-        />
-      )}
     </div>
   );
 }
