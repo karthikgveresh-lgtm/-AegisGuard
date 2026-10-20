@@ -2,7 +2,8 @@
  * API Service for Fraud Scoring Microservice
  */
 
-const BASE_URL = '/api';
+const API_HOST = import.meta.env.VITE_API_URL ? import.meta.env.VITE_API_URL.replace(/\/+$/, '') : '';
+const BASE_URL = API_HOST ? `${API_HOST}/api` : '/api';
 
 export async function evaluateTransaction(payload) {
   const res = await fetch(`${BASE_URL}/transactions/evaluate`, {
