@@ -663,16 +663,17 @@
       <div class="action-text">
         1. Click the green <strong>"Persona A"</strong> card at the top.<br>
         2. Point out customer name (<strong>Alex Chen</strong>), home city (<strong>New York</strong>), and trusted MacBook Pro.<br>
-        3. Point out the live telemetry metrics at the bottom of the card: dwell time ~14s, normal human mouse jitter (0.72), no paste.<br>
-        4. Click the blue <strong>"Authorize &amp; Pay $74.50"</strong> button.<br>
-        5. The green <strong>ALLOW</strong> modal pops up in ~12 milliseconds.<br>
-        6. Click <strong>"Why this decision?"</strong> to open the signal breakdown.
+        3. Point out the product in Order Summary: <strong>AuraPro Wireless Studio ANC Headphones ($74.50)</strong>.<br>
+        4. Point out the live telemetry metrics at the bottom of the card: dwell time ~14s, normal human mouse jitter (0.72), no paste.<br>
+        5. Click the blue <strong>"Authorize &amp; Pay $74.50"</strong> button.<br>
+        6. The green <strong>ALLOW</strong> modal pops up in ~12 milliseconds.<br>
+        7. Click <strong>"Why this decision?"</strong> to open the signal breakdown.
       </div>
     </div>
     <div class="voiceover-box">
       <div class="voiceover-header">🎙️ What to Say (Voiceover Script)</div>
       <div class="voiceover-text">
-        "First, let's look at <strong>Persona A</strong>: Alex Chen, a returning legitimate customer. Alex is purchasing groceries for $74.50 from his home in New York using his recognized MacBook Pro.<br><br>
+        "First, let's look at <strong>Persona A</strong>: Alex Chen, a returning legitimate customer. Alex is purchasing a pair of AuraPro Wireless ANC Headphones for $74.50 from his home in New York using his recognized MacBook Pro.<br><br>
         Notice the client-side telemetry: his mouse jitter is 0.72, showing natural human curvature, and his typing cadence matches his historical profile.<br><br>
         When I click <em>'Authorize &amp; Pay'</em>—look at that speed! In just <strong>12 milliseconds</strong>, AegisGuard approves the transaction with an instant <strong>ALLOW</strong> decision.<br><br>
         If we click <em>'Why this decision?'</em>, AegisGuard doesn't give us a vague AI score. It clearly explains that the device matched his verified hardware fingerprint—earning a negative risk bonus of minus 5 points—keeping his final risk score at <strong>0 out of 100</strong>. Zero friction, zero OTP hurdles, zero cart abandonment."
@@ -690,18 +691,19 @@
       <div class="action-text">
         1. Close the modal and click the amber <strong>"Persona B"</strong> preset.<br>
         2. Point out that Alex Chen transacted in New York 10 minutes ago, but this new request is coming from <strong>Miami (~1,750 km away)</strong> on an <strong>unrecognized Windows PC</strong>.<br>
-        3. Click <strong>"Authorize &amp; Pay $98.50"</strong>.<br>
-        4. The amber <strong>CHALLENGE</strong> modal appears with a 6-digit OTP prompt.<br>
-        5. Highlight the signals: <code class="inline">impossible_travel (+40)</code> and <code class="inline">unrecognized_device (+20)</code>.<br>
-        6. Point out the blue banner at the bottom: <em>"Hackathon Judge Demo Hint: Active TOTP code: 123456"</em>.<br>
-        7. Click the code or enter <code class="inline">123456</code> into the inputs.<br>
-        8. Click <strong>"Verify &amp; Complete Payment"</strong> &rarr; Modal turns green <strong>"Payment Verified &amp; Completed"</strong>!
+        3. Point out the product in Order Summary: <strong>SanDisk Extreme 1TB Portable NVMe SSD ($98.50)</strong>.<br>
+        4. Click <strong>"Authorize &amp; Pay $98.50"</strong>.<br>
+        5. The amber <strong>CHALLENGE</strong> modal appears with a 6-digit OTP prompt.<br>
+        6. Highlight the signals: <code class="inline">impossible_travel (+40)</code> and <code class="inline">unrecognized_device (+20)</code>.<br>
+        7. Point out the blue banner at the bottom: <em>"Hackathon Judge Demo Hint: Active TOTP code: 123456"</em>.<br>
+        8. Click the code or enter <code class="inline">123456</code> into the inputs.<br>
+        9. Click <strong>"Verify &amp; Complete Payment"</strong> &rarr; Modal turns green <strong>"Payment Verified &amp; Completed"</strong>!
       </div>
     </div>
     <div class="voiceover-box">
       <div class="voiceover-header">🎙️ What to Say (Voiceover Script)</div>
       <div class="voiceover-text">
-        "Now let's look at <strong>Persona B</strong>. Alex Chen completed an authorized transaction in New York just 10 minutes ago. Suddenly, a new $98 purchase attempt arrives originating from Miami—over 1,750 kilometers away—on a completely new Windows browser.<br><br>
+        "Now let's look at <strong>Persona B</strong>. Alex Chen completed an authorized transaction in New York just 10 minutes ago. Suddenly, a new $98.50 purchase attempt for a portable SSD arrives originating from Miami—over 1,750 kilometers away—on a completely new Windows browser.<br><br>
         When we submit this payment, AegisGuard calculates the geographic displacement velocity using the <strong>Haversine formula</strong>. Covering 1,750 kilometers in 10 minutes requires a physical speed of over <strong>10,500 kilometers per hour</strong>—which is physically impossible on commercial flights!<br><br>
         Instead of rigidly blocking a customer who might simply be on a corporate VPN, AegisGuard executes an <strong>Adaptive Step-Up Challenge</strong>. The risk score is 64 out of 100, driven by plus 40 for Impossible Travel and plus 20 for Unrecognized Device.<br><br>
         AegisGuard prompts for a 6-digit Time-based One-Time Password. We enter the one-time code <code class="inline">123456</code>, click <em>'Verify'</em>, and immediately the transaction upgrades to <strong>CHALLENGE_PASSED</strong>, payment completes, and the new device is securely bound to his account. Safe, adaptive, and customer-friendly!"
@@ -719,21 +721,22 @@
       <div class="action-header">🖥️ Action On Screen</div>
       <div class="action-text">
         1. Close the modal and click the red <strong>"Persona C"</strong> preset card.<br>
-        2. Highlight the telltale bot telemetry indicators:<br>
+        2. Point out the product in Order Summary: <strong>Ethereum Digital Asset Voucher (1.0 ETH) ($1,250.00)</strong> under merchant <em>ApexCrypto Global Exchange</em>.<br>
+        3. Highlight the telltale bot telemetry indicators locked in the diagnostics bar:<br>
            &bull; IP Address: <code class="inline">45.154.255.89</code> (known botnet / datacenter CIDR)<br>
-           &bull; Mouse Jitter: <code class="inline">0.00</code> (zero human curve; straight robotic trajectory)<br>
-           &bull; Clipboard Paste: <code class="inline">true</code> (automated clipboard injection into card field)<br>
+           &bull; Mouse Jitter: <code class="inline">0.00</code> in bold red (zero human curve; straight robotic trajectory)<br>
+           &bull; Paste Detected: <code class="inline">TRUE</code> in bold red (automated clipboard injection into card field)<br>
            &bull; Dwell Time: <code class="inline">420 ms</code> (superhuman script speed; &lt;1 second)<br>
-        3. Click <strong>"Authorize &amp; Pay $1,250.00"</strong>.<br>
-        4. The red <strong>BLOCK</strong> modal appears immediately with a Risk Score of <strong>100 / 100</strong>.<br>
-        5. Walk through the four triggered factors that contribute to the block.
+        4. Click <strong>"Authorize &amp; Pay $1,250.00"</strong>.<br>
+        5. The red <strong>BLOCK</strong> modal appears immediately with a Risk Score of <strong>100 / 100</strong>.<br>
+        6. Walk through the four triggered factors that contribute to the block.
       </div>
     </div>
     <div class="voiceover-box">
       <div class="voiceover-header">🎙️ What to Say (Voiceover Script)</div>
       <div class="voiceover-text">
-        "Now let's examine an actual cyber attack: <strong>Persona C</strong>, representing an automated credential-stuffing bot trying to purchase $1,250 in cryptocurrency with stolen credentials.<br><br>
-        Notice what our client-side telemetry captured before the submit button was even clicked: the IP belongs to a blacklisted bulletproof proxy subnet, the mouse jitter entropy is a dead flat <strong>0.00</strong>, the card number was pasted instantaneously, and the form dwell time was a superhuman <strong>420 milliseconds</strong>.<br><br>
+        "Now let's examine an actual cyber attack: <strong>Persona C</strong>, representing an automated credential-stuffing bot trying to purchase a $1,250 Ethereum Digital Asset Voucher with stolen card credentials.<br><br>
+        Notice what our client-side telemetry captured before the submit button was even clicked: the IP belongs to a blacklisted bulletproof proxy subnet, the mouse jitter entropy is a dead flat <strong>0.00</strong>, the card number was pasted instantaneously, and the form dwell time started from a superhuman <strong>420 milliseconds</strong>.<br><br>
         We click <em>'Authorize &amp; Pay'</em>, and AegisGuard hits it with an immediate, deterministic <strong>BLOCK</strong> at maximum risk score: <strong>100 out of 100</strong>.<br><br>
         Looking at the transparent breakdown: Blacklisted Subnet (+50), Direct Clipboard Paste (+25), Superhuman Form Fill (+25), and Zero Mouse Entropy (+20). The bot script never stood a chance, and the merchant's capital is protected without human intervention."
       </div>
